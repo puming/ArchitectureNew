@@ -1,2 +1,2 @@
-include ':app', ':commonsdk', ':base'
+include ':app', ':commonsdk', ':basics'
 rootProject.name='ArchitectureNew'

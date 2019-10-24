@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">commonSDK</string>
+    <string name="toast_text">toast</string>
 </resources>
