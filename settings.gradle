@@ -1,0 +1,2 @@
+include ':app', ':commonsdk', ':base'
+rootProject.name='ArchitectureNew'
