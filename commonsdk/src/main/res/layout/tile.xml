@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_47"
+    android:background="@drawable/tile_bg_selector"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="21dp"
+        android:maxHeight="21dp"
+        android:src="@android:drawable/ic_media_play" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="adassdadasdasdsa" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="21dp"
+        android:maxHeight="21dp"
+        android:src="@android:drawable/ic_menu_close_clear_cancel" />
+</LinearLayout>
