@@ -75,7 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|end"
-            android:src="@mipmap/button_logout"
+            android:src="@drawable/button_logout"
             android:visibility="gone" />
 
 
