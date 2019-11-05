@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="WrapContent">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+
     <style name="MatchContent">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="AppBar" parent="android:Widget.Material.Toolbar">
+        <item name="backText">@string/back_text</item>
+        <item name="backIcon">@drawable/ic_back</item>
+        <item name="android:text">@string/title_text</item>
+        <item name="menuText">@string/menu_text</item>
+        <item name="menuIcon">@drawable/ic_logout</item>
+        <item name="showLeft">true</item>
+        <item name="showRight">true</item>
+    </style>
+
+    <style name="ZTV_default_style">
+
     </style>
 </resources>

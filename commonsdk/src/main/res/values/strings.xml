@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">commonSDK</string>
     <string name="toast_text">toast</string>
+    <string name="back_text">返回</string>
+    <string name="title_text">标题</string>
+    <string name="menu_text">退出</string>
 </resources>

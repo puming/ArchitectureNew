@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="AppBar">
+        <attr name="backText" format="string" />
+        <attr name="backIcon" format="reference" />
+        <attr name="menuText" format="string" />
+        <attr name="menuIcon" format="reference" />
+        <attr name="android:text" />
+        <attr name="showLeft" format="boolean"/>
+        <attr name="showRight" format="boolean"/>
+    </declare-styleable>
+    <!-- Default Toolbar style. -->
+    <attr name="appBarDefStyle" format="reference" />
+</resources>

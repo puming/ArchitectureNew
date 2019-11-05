@@ -1,6 +1,8 @@
 package com.common.widget;
 
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,8 +24,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
  */
 public class AppBar extends ConstraintLayout {
     public static final int DEFAULT_LEFT_ICON = R.drawable.ic_back;
-    public static final int DEFAULT_RIGHT_ICON = R.drawable.button_logout;
-    public static final String DEFAULT_LEFT_TEXT = "返回";
+    public static final int DEFAULT_RIGHT_ICON = R.drawable.ic_logout;
 
     private ImageView mAppbarBackIcon;
     private TextView mAppbarBackText;
@@ -51,7 +52,25 @@ public class AppBar extends ConstraintLayout {
         mAppbarMenuText = (TextView) view.findViewById(R.id.appbar_menu_text);
         mAppbarMenuIcon = (ImageView) view.findViewById(R.id.appbar_menu_icon);
         mAppbarRightContainer = (FrameLayout) view.findViewById(R.id.appbar_right_container);
+        //obtain attr
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.AppBar, defStyleAttr, R.style.AppBar);
+        boolean showRight = typedArray.getBoolean(R.styleable.AppBar_showRight, true);
+        mAppbarRightContainer.setVisibility(showRight ? VISIBLE : GONE);
+        boolean showLeft = typedArray.getBoolean(R.styleable.AppBar_showLeft, true);
+        mAppbarLeftContainer.setVisibility(showLeft ? VISIBLE : GONE);
+        String backText = typedArray.getString(R.styleable.AppBar_backText);
+        mAppbarBackText.setText(backText);
+        Drawable backIcon = typedArray.getDrawable(R.styleable.AppBar_backIcon);
+        mAppbarBackIcon.setImageDrawable(backIcon);
+        String titleText = typedArray.getString(R.styleable.AppBar_android_text);
+        mAppbarTitle.setText(titleText);
+        String menuText = typedArray.getString(R.styleable.AppBar_menuText);
+        mAppbarMenuText.setText(menuText);
+        Drawable drawable = typedArray.getDrawable(R.styleable.AppBar_menuIcon);
+        mAppbarMenuIcon.setImageDrawable(drawable);
+        typedArray.recycle();
     }
+
 
     public ViewGroup getAppbarLeftContainer() {
         return mAppbarLeftContainer;
@@ -86,6 +105,12 @@ public class AppBar extends ConstraintLayout {
         return this;
     }
 
+    /**
+     * menuIcon 与 menuText 显示互斥
+     *
+     * @param show
+     * @return
+     */
     public AppBar showAppbarMenuIcon(boolean show) {
         if (show) {
             mAppbarMenuIcon.setVisibility(VISIBLE);
