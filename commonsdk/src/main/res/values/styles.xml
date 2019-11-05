@@ -11,6 +11,7 @@
         <item name="android:layout_height">match_parent</item>
     </style>
 
+    <!-- AppBar -->
     <style name="AppBar" parent="android:Widget.Material.Toolbar">
         <item name="backText">@string/back_text</item>
         <item name="backIcon">@drawable/ic_back</item>
@@ -19,9 +20,11 @@
         <item name="menuIcon">@drawable/ic_logout</item>
         <item name="showLeft">true</item>
         <item name="showRight">true</item>
+        <item name="accentColor">@android:color/black</item>
     </style>
 
-    <style name="ZTV_default_style">
+    <style name="appbar_default_style">
 
     </style>
+
 </resources>

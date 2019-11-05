@@ -1,7 +1,9 @@
 package com.common.widget;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -16,6 +18,8 @@ import android.widget.TextView;
 import com.common.R;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
+
+import java.util.Objects;
 
 /**
  * @author pm
@@ -54,6 +58,9 @@ public class AppBar extends ConstraintLayout {
         mAppbarRightContainer = (FrameLayout) view.findViewById(R.id.appbar_right_container);
         //obtain attr
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.AppBar, defStyleAttr, R.style.AppBar);
+        ColorStateList colorStateList = typedArray.getColorStateList(R.styleable.AppBar_accentColor);
+        int defaultColor = typedArray.getColor(R.styleable.AppBar_accentColor, Color.BLACK);
+        changeAccentColor(defaultColor);
         boolean showRight = typedArray.getBoolean(R.styleable.AppBar_showRight, true);
         mAppbarRightContainer.setVisibility(showRight ? VISIBLE : GONE);
         boolean showLeft = typedArray.getBoolean(R.styleable.AppBar_showLeft, true);
@@ -61,13 +68,15 @@ public class AppBar extends ConstraintLayout {
         String backText = typedArray.getString(R.styleable.AppBar_backText);
         mAppbarBackText.setText(backText);
         Drawable backIcon = typedArray.getDrawable(R.styleable.AppBar_backIcon);
+//        Objects.requireNonNull(backIcon).setTint(Color.BLACK);
         mAppbarBackIcon.setImageDrawable(backIcon);
         String titleText = typedArray.getString(R.styleable.AppBar_android_text);
         mAppbarTitle.setText(titleText);
         String menuText = typedArray.getString(R.styleable.AppBar_menuText);
         mAppbarMenuText.setText(menuText);
-        Drawable drawable = typedArray.getDrawable(R.styleable.AppBar_menuIcon);
-        mAppbarMenuIcon.setImageDrawable(drawable);
+        Drawable menuIcon = typedArray.getDrawable(R.styleable.AppBar_menuIcon);
+//        Objects.requireNonNull(menuIcon).setTint(Color.BLACK);
+        mAppbarMenuIcon.setImageDrawable(menuIcon);
         typedArray.recycle();
     }
 
@@ -80,6 +89,20 @@ public class AppBar extends ConstraintLayout {
         return mAppbarRightContainer;
     }
 
+    public AppBar setCustomRightView(View view) {
+        mAppbarRightContainer.removeAllViews();
+        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        mAppbarRightContainer.addView(view);
+        return this;
+    }
+
+    public AppBar setCustomLeftView(View view) {
+        mAppbarLeftContainer.removeAllViews();
+        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        mAppbarLeftContainer.addView(view);
+        return this;
+    }
+
     public AppBar setAppbarBackIcon(int resId) {
         mAppbarBackIcon.setImageResource(resId);
         return this;
@@ -90,8 +113,22 @@ public class AppBar extends ConstraintLayout {
         return this;
     }
 
+    public AppBar setAppbarBackText(Text text) {
+        mAppbarBackText.setText(text.getText());
+        mAppbarBackText.setTextColor(text.getColor());
+        mAppbarBackText.setTextSize(text.getSize());
+        return this;
+    }
+
     public AppBar setAppbarTitle(CharSequence text) {
         mAppbarTitle.setText(text);
+        return this;
+    }
+
+    public AppBar setAppbarTitle(Text text) {
+        mAppbarTitle.setText(text.getText());
+        mAppbarTitle.setTextColor(text.getColor());
+        mAppbarTitle.setTextSize(text.getSize());
         return this;
     }
 
@@ -100,9 +137,29 @@ public class AppBar extends ConstraintLayout {
         return this;
     }
 
+    public AppBar setAppbarMenuText(Text text) {
+        mAppbarMenuText.setText(text.getText());
+        mAppbarMenuText.setTextColor(text.getColor());
+        mAppbarMenuText.setTextSize(text.getSize());
+        return this;
+    }
+
     public AppBar setAppbarMenuIcon(int resId) {
         mAppbarMenuIcon.setBackgroundResource(resId);
         return this;
+    }
+
+    public AppBar setAccentColor(int color) {
+        changeAccentColor(color);
+        return this;
+    }
+
+    private void changeAccentColor(int color) {
+        mAppbarTitle.setTextColor(color);
+        mAppbarBackIcon.setColorFilter(color);
+        mAppbarBackText.setTextColor(color);
+        mAppbarMenuIcon.setColorFilter(color);
+        mAppbarMenuText.setTextColor(color);
     }
 
     /**
@@ -165,5 +222,64 @@ public class AppBar extends ConstraintLayout {
             mAppbarLeftContainer.setVisibility(GONE);
         }
         return this;
+    }
+
+    public static class Builder {
+
+        private final Text t;
+
+        public Builder() {
+            t = new Text();
+        }
+
+        public Builder setText(CharSequence text) {
+            t.text = text;
+            return this;
+        }
+
+        public Builder setTextColor(int color) {
+            t.color = color;
+            return this;
+        }
+
+        public Builder setTextSize(float size) {
+            t.size = size;
+            return this;
+        }
+
+        public Text build() {
+            return t;
+        }
+
+    }
+
+    public static class Text {
+        float size;
+        CharSequence text;
+        int color;
+
+        public float getSize() {
+            return size;
+        }
+
+        public void setSize(int size) {
+            this.size = size;
+        }
+
+        public CharSequence getText() {
+            return text;
+        }
+
+        public void setText(CharSequence text) {
+            this.text = text;
+        }
+
+        public int getColor() {
+            return color;
+        }
+
+        public void setColor(int color) {
+            this.color = color;
+        }
     }
 }

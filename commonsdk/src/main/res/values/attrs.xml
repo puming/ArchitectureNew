@@ -8,6 +8,7 @@
         <attr name="android:text" />
         <attr name="showLeft" format="boolean"/>
         <attr name="showRight" format="boolean"/>
+        <attr name="accentColor" format="color"/>
     </declare-styleable>
     <!-- Default Toolbar style. -->
     <attr name="appBarDefStyle" format="reference" />
