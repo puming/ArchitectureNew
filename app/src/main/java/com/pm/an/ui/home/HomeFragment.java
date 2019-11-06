@@ -27,6 +27,7 @@ public class HomeFragment extends Fragment {
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         AppBar appBar = root.findViewById(R.id.appBar);
+        appBar.showAppbarMenuIcon(true).setAppbarMenuIcon(R.drawable.ic_setting);
         homeViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {

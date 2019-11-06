@@ -145,7 +145,7 @@ public class AppBar extends ConstraintLayout {
     }
 
     public AppBar setAppbarMenuIcon(int resId) {
-        mAppbarMenuIcon.setBackgroundResource(resId);
+        mAppbarMenuIcon.setImageResource(resId);
         return this;
     }
 
@@ -254,9 +254,9 @@ public class AppBar extends ConstraintLayout {
     }
 
     public static class Text {
-        float size;
+        float size = 15;
         CharSequence text;
-        int color;
+        int color = Color.BLACK;
 
         public float getSize() {
             return size;

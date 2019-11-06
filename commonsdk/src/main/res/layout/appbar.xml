@@ -68,14 +68,17 @@
             android:layout_gravity="center_vertical|end"
             android:text="下一步"
             android:textSize="15sp"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/appbar_menu_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxWidth="18dp"
+            android:maxHeight="18dp"
+            android:scaleType="fitXY"
             android:layout_gravity="center_vertical|end"
             android:src="@drawable/button_logout"
-            android:visibility="gone" />
+            android:visibility="visible" />
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,9 +4,8 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Point;
 import android.util.AttributeSet;
-import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,6 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.lifecycle.ViewModel;
 
 import com.common.R;
 
@@ -55,10 +53,20 @@ public class Tile extends ConstraintLayout {
 
 
         setClipToPadding(false);
+        setClickable(true);
+        setFocusable(true);
+        setFocusableInTouchMode(true);
         setWillNotDraw(false);
+        setBackgroundResource(R.drawable.tile_bg_selector);
+        setMinHeight(dp2px(context, 48));
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
-        mPaint.setColor(Color.BLACK);
+        mPaint.setColor(Color.RED);
+    }
+
+    private int dp2px(Context context, int dp) {
+        return (int) (TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                dp, context.getResources().getDisplayMetrics()) + 0.5f);
     }
 
     public ViewGroup getLeadingContainer() {
@@ -121,6 +129,11 @@ public class Tile extends ConstraintLayout {
         return this;
     }
 
+    public Tile setDividerMode(DividerMode mode) {
+        mDividerMode = mode;
+        return this;
+    }
+
     enum DividerMode {
         /**
          * 无分割线
@@ -137,13 +150,16 @@ public class Tile extends ConstraintLayout {
     }
 
     @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
+
+    @Override
     protected void onDraw(Canvas canvas) {
-        int height = getHeight();
-        int width = getWidth();
         if (mDividerMode == DividerMode.WHOLE) {
-            canvas.drawLine(0, getHeight(), getWidth(), getHeight(), mPaint);
+            canvas.drawLine(0, getHeight() - 1, getWidth(), getHeight() - 1, mPaint);
         } else if (mDividerMode == DividerMode.LACK) {
-            canvas.drawLine(20, getHeight() -10, getWidth(), getHeight() -10, mPaint);
+            canvas.drawLine(20, getHeight() - 1, getWidth(), getHeight() - 1, mPaint);
         }
         super.onDraw(canvas);
     }

@@ -2,5 +2,6 @@
 <resources>
     <!-- 黑色百分之50 -->
     <color name="color_black_fifty">#7f000000</color>
+    <color name="color_gray_fifty">#7fAAAAAA</color>
     <color name="color_white">#ffffff</color>
 </resources>
