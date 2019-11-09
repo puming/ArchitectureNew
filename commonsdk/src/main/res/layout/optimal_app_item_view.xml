@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:itemview="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/optimal_app_item_one"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/item_card_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        itemview:layout_constraintEnd_toEndOf="parent"
+        itemview:layout_constraintHorizontal_bias="0.0"
+        itemview:layout_constraintStart_toStartOf="parent"
+        itemview:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="@string/app_name"
+        itemview:layout_constraintEnd_toEndOf="@+id/item_card_view"
+        itemview:layout_constraintStart_toStartOf="@+id/item_card_view"
+        itemview:layout_constraintTop_toBottomOf="@+id/item_card_view" />
+</merge>

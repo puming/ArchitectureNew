@@ -14,7 +14,11 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.common.widget.AppBar;
+import com.common.widget.BannerView;
+import com.common.widget.OptimalAppItemView;
 import com.pm.an.R;
+
+import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
@@ -28,6 +32,16 @@ public class HomeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         AppBar appBar = root.findViewById(R.id.appBar);
         appBar.showAppbarMenuIcon(true).setAppbarMenuIcon(R.drawable.ic_setting);
+        BannerView bannerView = root.findViewById(R.id.banner);
+        OptimalAppItemView optimalAppItemView = root.findViewById(R.id.image_text);
+        optimalAppItemView.setIcon(R.mipmap.ic_launcher);
+        optimalAppItemView.setTitle("标题");
+        ArrayList<String> list = new ArrayList<>(4);
+        list.add("http://pic44.nipic.com/20140723/18505720_094503373000_2.jpg");
+        list.add("http://pic44.nipic.com/20140723/18505720_094503373000_2.jpg");
+        list.add("http://pic44.nipic.com/20140723/18505720_094503373000_2.jpg");
+        list.add("http://pic44.nipic.com/20140723/18505720_094503373000_2.jpg");
+        bannerView.addData(list);
         homeViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {

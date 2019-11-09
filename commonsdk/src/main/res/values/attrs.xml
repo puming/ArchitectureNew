@@ -12,4 +12,15 @@
     </declare-styleable>
     <!-- Default Toolbar style. -->
     <attr name="appBarDefStyle" format="reference" />
+    <!---->
+    <declare-styleable name="OptimalAppItemView">
+        <attr name="icon_width" />
+        <attr name="icon_height" />
+        <attr name="text_width" />
+        <attr name="text_height" />
+        <attr name="top_margin" />
+        <attr name="bottom_margin" />
+        <attr name="text_size" />
+        <attr name="text_color" />
+    </declare-styleable>
 </resources>

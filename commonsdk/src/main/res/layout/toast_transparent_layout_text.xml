@@ -9,7 +9,7 @@
     android:paddingEnd="10dp"
     android:paddingStart="10dp"
     android:text="@string/toast_text"
-    android:textColor="@color/color_white"
+    android:textColor="@android:color/white"
     android:textSize="@dimen/sp_24">
 
 </TextView>
