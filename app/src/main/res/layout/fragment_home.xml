@@ -32,26 +32,25 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_144"
         android:layout_marginTop="@dimen/dp_8"
-        android:background="#ff0000"
+        android:background="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/appBar" />
 
-    <com.common.widget.OptimalAppItemView
+    <com.common.widget.ImageTextCell
         android:id="@+id/image_text"
-        android:layout_width="@dimen/dp_96"
-        android:layout_height="@dimen/dp_96"
-        android:background="@color/colorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#393636"
+        app:icon_height="@dimen/dp_72"
+        app:icon_width="@dimen/dp_72"
         app:layout_constraintBottom_toTopOf="@id/tile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1"
-        app:icon_width="@dimen/dp_72"
-        app:icon_height="@dimen/dp_72"
-        app:text_width="192dp"
-        app:text_size="24sp"
-        app:text_color="#ff0000" />
+        app:text="我爱你"
+        app:bottom_margin="16dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

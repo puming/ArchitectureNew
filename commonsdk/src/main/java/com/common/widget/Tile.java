@@ -61,7 +61,7 @@ public class Tile extends ConstraintLayout {
         setMinHeight(dp2px(context, 48));
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
-        mPaint.setColor(Color.RED);
+        mPaint.setColor(Color.GRAY);
     }
 
     private int dp2px(Context context, int dp) {

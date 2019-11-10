@@ -13,14 +13,16 @@
     <!-- Default Toolbar style. -->
     <attr name="appBarDefStyle" format="reference" />
     <!---->
-    <declare-styleable name="OptimalAppItemView">
+    <declare-styleable name="ImageTextCell">
         <attr name="icon_width" />
+        <attr name="icon"  format="reference"/>
         <attr name="icon_height" />
-        <attr name="text_width" />
-        <attr name="text_height" />
-        <attr name="top_margin" />
-        <attr name="bottom_margin" />
+        <attr name="text"  format="string"/>
+        <attr name="text_max_width" />
+        <attr name="text_max_height" />
         <attr name="text_size" />
         <attr name="text_color" />
+        <attr name="top_margin" />
+        <attr name="bottom_margin" />
     </declare-styleable>
 </resources>

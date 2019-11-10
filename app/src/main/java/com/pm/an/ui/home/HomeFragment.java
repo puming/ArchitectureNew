@@ -1,11 +1,9 @@
 package com.pm.an.ui.home;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,7 +13,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.common.widget.AppBar;
 import com.common.widget.BannerView;
-import com.common.widget.OptimalAppItemView;
+import com.common.widget.ImageTextCell;
 import com.pm.an.R;
 
 import java.util.ArrayList;
@@ -33,9 +31,9 @@ public class HomeFragment extends Fragment {
         AppBar appBar = root.findViewById(R.id.appBar);
         appBar.showAppbarMenuIcon(true).setAppbarMenuIcon(R.drawable.ic_setting);
         BannerView bannerView = root.findViewById(R.id.banner);
-        OptimalAppItemView optimalAppItemView = root.findViewById(R.id.image_text);
+        ImageTextCell optimalAppItemView = root.findViewById(R.id.image_text);
         optimalAppItemView.setIcon(R.mipmap.ic_launcher);
-        optimalAppItemView.setTitle("标题");
+//        optimalAppItemView.setTitle("标题");
         ArrayList<String> list = new ArrayList<>(4);
         list.add("http://pic44.nipic.com/20140723/18505720_094503373000_2.jpg");
         list.add("http://pic44.nipic.com/20140723/18505720_094503373000_2.jpg");
