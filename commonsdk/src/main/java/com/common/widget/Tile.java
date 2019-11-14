@@ -1,6 +1,7 @@
 package com.common.widget;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -23,6 +24,9 @@ import com.common.R;
  * @email puming@zdsoft.cn
  */
 public class Tile extends ConstraintLayout {
+    public static final int DividerNone = 0;
+    public static final int DIVIDER_WHOLE = 1;
+    public static final int DIVIDER_LACK = 2;
     ViewGroup mLeadingContainer;
     ImageView mLeading;
     TextView mTitle;
@@ -30,8 +34,8 @@ public class Tile extends ConstraintLayout {
     TextView mTrailingText;
     ImageView mTrailingIcon;
 
-    DividerMode mDividerMode = DividerMode.LACK;
     Paint mPaint;
+    private int mDividerMode;
 
     public Tile(Context context) {
         this(context, null);
@@ -43,6 +47,11 @@ public class Tile extends ConstraintLayout {
 
     public Tile(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.Tile);
+        mDividerMode = typedArray.getInt(R.styleable.Tile_divider_mode, 0);
+        boolean showLeading = typedArray.getBoolean(R.styleable.Tile_show_leading, true);
+        int dividerColor = typedArray.getColor(R.styleable.Tile_divider_color, Color.GRAY);
+        typedArray.recycle();
         View view = LayoutInflater.from(context).inflate(R.layout.tile, this, true);
         mLeadingContainer = view.findViewById(R.id.tile_leading_container);
         mLeading = view.findViewById(R.id.tile_leading_icon);
@@ -51,7 +60,7 @@ public class Tile extends ConstraintLayout {
         mTrailingText = view.findViewById(R.id.tile_trailing_text);
         mTrailingIcon = view.findViewById(R.id.tile_trailing_icon);
 
-
+        mLeadingContainer.setVisibility(showLeading ? VISIBLE : GONE);
         setClipToPadding(false);
         setClickable(true);
         setFocusable(true);
@@ -61,7 +70,7 @@ public class Tile extends ConstraintLayout {
         setMinHeight(dp2px(context, 48));
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
-        mPaint.setColor(Color.GRAY);
+        mPaint.setColor(dividerColor);
     }
 
     private int dp2px(Context context, int dp) {
@@ -129,25 +138,11 @@ public class Tile extends ConstraintLayout {
         return this;
     }
 
-    public Tile setDividerMode(DividerMode mode) {
+    public Tile setDividerMode(int mode) {
         mDividerMode = mode;
         return this;
     }
 
-    enum DividerMode {
-        /**
-         * 无分割线
-         */
-        NONE,
-        /**
-         * 分割线充满整个宽度
-         */
-        WHOLE,
-        /**
-         * 分割线充满右边部分
-         */
-        LACK
-    }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -156,9 +151,9 @@ public class Tile extends ConstraintLayout {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        if (mDividerMode == DividerMode.WHOLE) {
+        if (mDividerMode == DIVIDER_WHOLE) {
             canvas.drawLine(0, getHeight() - 1, getWidth(), getHeight() - 1, mPaint);
-        } else if (mDividerMode == DividerMode.LACK) {
+        } else if (mDividerMode == DIVIDER_LACK) {
             canvas.drawLine(20, getHeight() - 1, getWidth(), getHeight() - 1, mPaint);
         }
         super.onDraw(canvas);

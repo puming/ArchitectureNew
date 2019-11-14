@@ -25,4 +25,14 @@
         <attr name="top_margin" />
         <attr name="bottom_margin" />
     </declare-styleable>
+
+    <declare-styleable name="Tile">
+        <attr name="show_leading" format="boolean"/>
+        <attr name="divider_color" format="color"/>
+        <attr name="divider_mode" format="enum">
+            <enum name="none" value="0"/>
+            <enum name="whole" value="1"/>
+            <enum name="lack" value="2"/>
+        </attr>
+    </declare-styleable>
 </resources>
