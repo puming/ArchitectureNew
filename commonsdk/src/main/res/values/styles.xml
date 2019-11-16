@@ -27,4 +27,10 @@
 
     </style>
 
+    <style name="Tile">
+        <item name="leading">@drawable/ic_setting</item>
+        <item name="trailing_icon">@drawable/ic_next</item>
+        <item name="divider_mode">none</item>
+    </style>
+
 </resources>

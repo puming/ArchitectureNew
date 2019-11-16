@@ -5,6 +5,8 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -47,10 +49,17 @@ public class Tile extends ConstraintLayout {
 
     public Tile(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.Tile);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.Tile, defStyleAttr, R.style.Tile);
         mDividerMode = typedArray.getInt(R.styleable.Tile_divider_mode, 0);
         boolean showLeading = typedArray.getBoolean(R.styleable.Tile_show_leading, true);
         int dividerColor = typedArray.getColor(R.styleable.Tile_divider_color, Color.GRAY);
+        String title = typedArray.getString(R.styleable.Tile_title);
+        String trailingText = typedArray.getString(R.styleable.Tile_trailing_text);
+        Drawable icon = typedArray.getDrawable(R.styleable.Tile_leading);
+        Drawable trailingIcon = typedArray.getDrawable(R.styleable.Tile_trailing_icon);
+        float textSize = typedArray.getDimension(R.styleable.Tile_text_size, 14);
+        int textColor = typedArray.getColor(R.styleable.Tile_text_color, Color.BLACK);
+
         typedArray.recycle();
         View view = LayoutInflater.from(context).inflate(R.layout.tile, this, true);
         mLeadingContainer = view.findViewById(R.id.tile_leading_container);
@@ -61,6 +70,16 @@ public class Tile extends ConstraintLayout {
         mTrailingIcon = view.findViewById(R.id.tile_trailing_icon);
 
         mLeadingContainer.setVisibility(showLeading ? VISIBLE : GONE);
+        mTitle.setText(title);
+        mTitle.setTextColor(textColor);
+        mTitle.setTextSize(textSize);
+        mLeading.setImageDrawable(icon);
+
+        mTrailingText.setText(trailingText);
+        mTrailingText.setTextColor(textColor);
+        mTrailingText.setTextSize(textSize);
+        mTrailingIcon.setImageDrawable(trailingIcon);
+
         setClipToPadding(false);
         setClickable(true);
         setFocusable(true);
@@ -78,6 +97,11 @@ public class Tile extends ConstraintLayout {
                 dp, context.getResources().getDisplayMetrics()) + 0.5f);
     }
 
+    private float sp2px(Context context, int dp) {
+        return (TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
+                dp, context.getResources().getDisplayMetrics()));
+    }
+
     public ViewGroup getLeadingContainer() {
         return mLeadingContainer;
     }
@@ -93,6 +117,24 @@ public class Tile extends ConstraintLayout {
 
     public Tile setTitle(CharSequence title) {
         mTitle.setText(title);
+        return this;
+    }
+
+    public Tile setTitleTextAppearance(int resId) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            mTitle.setTextAppearance(resId);
+        }else {
+            mTitle.setTextAppearance(getContext(),resId);
+        }
+        return this;
+    }
+
+    public Tile setTrailingTextAppearance(int resId) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            mTrailingText.setTextAppearance(resId);
+        }else {
+            mTrailingText.setTextAppearance(getContext(),resId);
+        }
         return this;
     }
 

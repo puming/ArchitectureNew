@@ -71,8 +71,8 @@ public class ImageTextCell extends ConstraintLayout {
             defColor = getResources().getColor(R.color.color_white_eighty);
         }
         int textColor = typedArray.getColor(R.styleable.ImageTextCell_text_color, defColor);
-        float textSize = (int) typedArray.getDimension(R.styleable.ImageTextCell_text_size,
-                dp2px(getContext(), 12));
+        float textSize = typedArray.getDimension(R.styleable.ImageTextCell_text_size,
+                14);
         typedArray.recycle();
 
         MarginLayoutParams iconParams = (MarginLayoutParams) mIcon.getLayoutParams();

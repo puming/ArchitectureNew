@@ -55,7 +55,7 @@ public class ApiResponse<RequestType> {
         private int errorCode;
 
         public ApiErrorResponse(String error) {
-           this(error,-1);
+           this(error,0);
         }
         public ApiErrorResponse(String error, int code) {
             this.error = error;

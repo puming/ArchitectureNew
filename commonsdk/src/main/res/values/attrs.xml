@@ -6,18 +6,18 @@
         <attr name="menuText" format="string" />
         <attr name="menuIcon" format="reference" />
         <attr name="android:text" />
-        <attr name="showLeft" format="boolean"/>
-        <attr name="showRight" format="boolean"/>
-        <attr name="accentColor" format="color"/>
+        <attr name="showLeft" format="boolean" />
+        <attr name="showRight" format="boolean" />
+        <attr name="accentColor" format="color" />
     </declare-styleable>
     <!-- Default Toolbar style. -->
     <attr name="appBarDefStyle" format="reference" />
     <!---->
     <declare-styleable name="ImageTextCell">
         <attr name="icon_width" />
-        <attr name="icon"  format="reference"/>
+        <attr name="icon" format="reference" />
         <attr name="icon_height" />
-        <attr name="text"  format="string"/>
+        <attr name="text" format="string" />
         <attr name="text_max_width" />
         <attr name="text_max_height" />
         <attr name="text_size" />
@@ -27,12 +27,18 @@
     </declare-styleable>
 
     <declare-styleable name="Tile">
-        <attr name="show_leading" format="boolean"/>
-        <attr name="divider_color" format="color"/>
+        <attr name="show_leading" format="boolean" />
+        <attr name="divider_color" format="color" />
         <attr name="divider_mode" format="enum">
-            <enum name="none" value="0"/>
-            <enum name="whole" value="1"/>
-            <enum name="lack" value="2"/>
+            <enum name="none" value="0" />
+            <enum name="whole" value="1" />
+            <enum name="lack" value="2" />
         </attr>
+        <attr name="title" format="string" />
+        <attr name="leading" format="reference" />
+        <attr name="trailing_icon" format="reference" />
+        <attr name="trailing_text" format="string" />
+        <attr name="text_size" />
+        <attr name="text_color" />
     </declare-styleable>
 </resources>

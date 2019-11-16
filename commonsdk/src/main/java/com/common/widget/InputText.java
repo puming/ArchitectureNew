@@ -61,6 +61,16 @@ public class InputText extends AppCompatEditText {
         });
     }
 
+    @Override
+    protected void onFocusChanged(boolean focused, int direction, Rect previouslyFocusedRect) {
+        super.onFocusChanged(focused, direction, previouslyFocusedRect);
+        if(!focused){
+            setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
+        }else {
+            setDrawable();
+        }
+    }
+
     /**
      * 绘制删除图片
      */
