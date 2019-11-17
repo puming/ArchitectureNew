@@ -37,4 +37,7 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation project(path: ':basics')
+    //video support
+    implementation 'com.google.android.exoplayer:exoplayer:r2.5.2'
+    implementation project(path: ':player')
 }
