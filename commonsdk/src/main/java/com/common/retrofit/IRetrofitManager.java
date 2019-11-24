@@ -19,12 +19,22 @@ public interface IRetrofitManager {
 
     /**
      * 支持Rx 的 Retrofit
+     *
      * @param serviceClass
      * @param isRxRetrofit
      * @param <T>
      * @return
      */
+    @Deprecated
     <T> T obtainRetrofitService(Class<T> serviceClass, boolean isRxRetrofit);
+
+    /**
+     * @param serviceClass
+     * @param type
+     * @param <T>
+     * @return
+     */
+    <T> T obtainRetrofitService(Class<T> serviceClass, AdapterType type);
 
     /**
      * 根据传入的 Class 获取对应的 RxCache service
@@ -46,4 +56,10 @@ public interface IRetrofitManager {
      * @return
      */
     Context getContext();
+
+    enum AdapterType {
+        LIVE,
+        RX,
+        DEFAULT
+    }
 }

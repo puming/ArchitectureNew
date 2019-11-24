@@ -24,13 +24,19 @@ public class RetrofitManager implements IRetrofitManager {
     private static final String TAG = "RetrofitManager";
     @Named("live")
     @Inject
-    Lazy<Retrofit> mRetrofit;
+    Lazy<Retrofit> mLiveRetrofit;
+
+    @Named("default")
+    @Inject
+    Lazy<Retrofit> mDefRetrofit;
     @Named("rx")
     @Inject
     Lazy<Retrofit> mRxRetrofit;
 
     @Inject
     Lazy<OkHttpClient> mClient;
+
+    AdapterType mAdapterType = AdapterType.LIVE;
 
     @Inject
     public RetrofitManager() {
@@ -45,7 +51,22 @@ public class RetrofitManager implements IRetrofitManager {
     @Override
     public <T> T obtainRetrofitService(Class<T> serviceClass, boolean isRxRetrofit) {
 //        return wrapperRetrofitService(serviceClass, isRxRetrofit);
-        return isRxRetrofit ? createRxRetrofit(serviceClass) : createService(serviceClass);
+        return isRxRetrofit ? createRxRetrofit(serviceClass) : createLiveService(serviceClass);
+    }
+
+    @Override
+    public <T> T obtainRetrofitService(Class<T> serviceClass, AdapterType type) {
+//        return wrapperRetrofitService(serviceClass, isRxRetrofit);
+        switch (type) {
+            case RX:
+                return createRxRetrofit(serviceClass);
+            case LIVE:
+                return createLiveService(serviceClass);
+            case DEFAULT:
+                return createDefaultRetrofit(serviceClass);
+            default:
+                return createLiveService(serviceClass);
+        }
     }
 
     public <T> T wrapperRetrofitService(Class<T> serviceClass, boolean isRxRetrofit) {
@@ -59,7 +80,7 @@ public class RetrofitManager implements IRetrofitManager {
                             if (isRxRetrofit) {
                                 service = createRxRetrofit(serviceClass);
                             } else {
-                                service = createService(serviceClass);
+                                service = createLiveService(serviceClass);
                             }
                             // 执行真正的 Retrofit 动态代理的方法
                             Observable observable = (Observable) getRetrofitMethod(service, method)
@@ -74,7 +95,7 @@ public class RetrofitManager implements IRetrofitManager {
                         if (isRxRetrofit) {
                             service = createRxRetrofit(serviceClass);
                         } else {
-                            service = createService(serviceClass);
+                            service = createLiveService(serviceClass);
                         }
                         return getRetrofitMethod(service, method).invoke(service, args);
                     }
@@ -88,12 +109,16 @@ public class RetrofitManager implements IRetrofitManager {
      * @param <T>          ApiService class
      * @return ApiService
      */
-    private <T> T createService(Class<T> serviceClass) {
-        return mRetrofit.get().create(serviceClass);
+    private <T> T createLiveService(Class<T> serviceClass) {
+        return mLiveRetrofit.get().create(serviceClass);
     }
 
     private <T> T createRxRetrofit(Class<T> serviceClass) {
         return mRxRetrofit.get().create(serviceClass);
+    }
+
+    private <T> T createDefaultRetrofit(Class<T> serviceClass) {
+        return mDefRetrofit.get().create(serviceClass);
     }
 
     private <T> Method getRetrofitMethod(T service, Method method) throws NoSuchMethodException {

@@ -23,7 +23,7 @@ public class AudioActivity extends AppCompatActivity {
 
         mMediaPlayer = new MediaPlayer();
         mMediaPlayer.reset();
-        String rawPath = "android.resource://" + getPackageName() + "/" + R.raw.test_audio;
+        String rawPath = "android.resource://" + getPackageName() + "/" + R.raw.test238_audio_10;
         try {
             mMediaPlayer.setDataSource(rawPath);
             mMediaPlayer.prepare();

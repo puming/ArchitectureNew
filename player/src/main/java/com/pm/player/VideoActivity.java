@@ -103,7 +103,7 @@ public class VideoActivity extends AppCompatActivity {
     }*/
 
     private void initVideoView(Uri uri) {
-        String rawPath = "android.resource://" + getPackageName() + "/" + R.raw.test_video;
+        String rawPath = "android.resource://" + getPackageName() + "/" + R.raw.test238_video_10;
         videoView.setVideoPath(rawPath);
 //        videoView.setVideoPath("https://zjyr.zhonglr.com/obs/view.json?mockSessionId=84592393142792&id=84203203872000");
 //        videoView.setVideoURI(uri);
