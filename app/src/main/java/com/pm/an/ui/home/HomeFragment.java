@@ -1,6 +1,7 @@
 package com.pm.an.ui.home;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import com.pm.an.R;
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
+    private static final String TAG = "HomeFragment";
 
     private HomeViewModel homeViewModel;
 
@@ -43,6 +45,12 @@ public class HomeFragment extends Fragment {
         homeViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
+            }
+        });
+        root.findViewById(R.id.tile).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: v="+v);
             }
         });
         return root;
