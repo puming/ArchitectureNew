@@ -26,13 +26,12 @@ public class RetrofitManager implements IRetrofitManager {
     @Inject
     Lazy<Retrofit> mLiveRetrofit;
 
-    @Named("default")
+//    @Named("default")
     @Inject
     Lazy<Retrofit> mDefRetrofit;
     @Named("rx")
     @Inject
     Lazy<Retrofit> mRxRetrofit;
-
     @Inject
     Lazy<OkHttpClient> mClient;
 

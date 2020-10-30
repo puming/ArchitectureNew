@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
 apply plugin: 'maven'
 
 android {
@@ -65,10 +66,51 @@ dependencies {
 group = 'com.pm.common'
 version = '0.0.1'
 
+publish {
+    userOrg = 'puming'
+    groupId = 'com.pm.common'
+    artifactId = 'commonsdk'
+    publishVersion = '0.0.1'
+    desc = 'APP基础脚手架SDK'
+    website = 'https://github.com/puming/ArchitectureNew'
+}
+
+// Bintray
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+
+    configurations = ['archives']
+    /*pkg {
+        repo = bintrayRepo
+        name = bintrayName
+        desc = libraryDescription
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = allLicenses
+        publish = true
+        publicDownloadNumbers = true
+        version {
+            desc = libraryDescription
+            gpg {
+                sign = true //Determines whether to GPG sign the files. The default is false
+                passphrase = properties.getProperty("bintray.gpg.password")
+                //Optional. The passphrase for GPG signing'
+            }
+        }
+    }*/
+}
+
 uploadArchives {
     repositories {
         mavenDeployer {
             //本地的Maven地址
+             /*repository(url: "https://dl.bintray.com/puming/mavin") {
+                authentication(userName: "puming", password: "itcode@1020")
+             }*/
             repository(url: uri('../repositories'))
 //            pom.groupId = group
             pom.version  = version
