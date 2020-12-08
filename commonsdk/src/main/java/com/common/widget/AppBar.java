@@ -52,10 +52,14 @@ public class AppBar extends ConstraintLayout {
         mAppbarBackIcon = (ImageView) view.findViewById(R.id.appbar_back_icon);
         mAppbarBackText = (TextView) view.findViewById(R.id.appbar_back_text);
         mAppbarLeftContainer = (LinearLayout) view.findViewById(R.id.appbar_left_container);
+        mAppbarLeftContainer.setClickable(true);
+        mAppbarLeftContainer.setDescendantFocusability(FOCUS_BLOCK_DESCENDANTS);
         mAppbarTitle = (TextView) view.findViewById(R.id.appbar_title);
         mAppbarMenuText = (TextView) view.findViewById(R.id.appbar_menu_text);
         mAppbarMenuIcon = (ImageView) view.findViewById(R.id.appbar_menu_icon);
         mAppbarRightContainer = (FrameLayout) view.findViewById(R.id.appbar_right_container);
+        mAppbarRightContainer.setClickable(true);
+        mAppbarRightContainer.setDescendantFocusability(FOCUS_BLOCK_DESCENDANTS);
         //obtain attr
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.AppBar, defStyleAttr, R.style.AppBar);
         ColorStateList colorStateList = typedArray.getColorStateList(R.styleable.AppBar_accentColor);
