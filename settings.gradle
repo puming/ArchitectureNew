@@ -1,2 +1,3 @@
+include ':common-data'
 include ':app', ':commonsdk', ':basics',':player'
 rootProject.name='ArchitectureNew'
