@@ -10,7 +10,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.72"
 //        classpath 'com.android.tools.build:gradle:3.5.0'
         classpath 'com.android.tools.build:gradle:3.3.2'
-        classpath 'com.novoda:bintray-release:+'
+        classpath 'com.novoda:bintray-release:0.9'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -25,7 +25,9 @@ allprojects {
     repositories {
         google()
         jcenter()
-
+        maven {
+            url("file://" + project.rootDir.absolutePath + "/repositories")
+        }
     }
 }
 
@@ -41,4 +43,15 @@ ext {
     targetSdkVersion = 29
     targetCompatibility = JavaVersion.VERSION_1_8
     sourceCompatibility = JavaVersion.VERSION_1_8
+
+    appcompat = "1.2.0"
+    constraintlayout = "2.0.4"
+    navigation = "2.3.1"
+    lifecycle = "2.2.0"
+
+    dagger = "2.25"
+    retrofit = "2.3.0"
+    glide = "4.9.0"
+
+    relaseVersion = "beta-0.0.2"
 }

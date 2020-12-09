@@ -98,6 +98,14 @@ public class OkHttpModule {
         return builder.build();
     }
 
+    @Named("default")
+    @Provides
+    Retrofit provideDefRetrofit(HttpUrl domain, OkHttpClient client) {
+        return new Retrofit.Builder().client(client)
+                .baseUrl(domain)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+    }
     @Named("live")
     @Provides
     Retrofit provideRetrofit(HttpUrl domain, OkHttpClient client) {

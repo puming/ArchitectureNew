@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-kapt'
+//apply plugin: 'kotlin-android'
+//apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -31,13 +32,12 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    testImplementation 'junit:junit:4.12'
+    implementation "androidx.appcompat:appcompat:$rootProject.ext.appcompat"
+    testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-//    api project(path: ':commonsdk')
-    api 'com.pm.common:commonsdk:0.0.1'
-//    implementation 'com.pm.common:commonsdk:0.0.1'
+    api project(path: ':commonsdk')
+//    api 'com.pm.common:commonsdk:0.0.1'
 
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'androidx.recyclerview:recyclerview-selection:1.0.0'
@@ -55,6 +55,8 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
 
     //dagger
-//    annotationProcessor 'com.google.dagger:dagger-compiler:2.16'
-    kapt 'com.google.dagger:dagger-compiler:2.16'
+    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.dagger"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.ext.dagger"
+//    kapt 'com.google.dagger:dagger-compiler:2.16'
+//    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.72"
 }

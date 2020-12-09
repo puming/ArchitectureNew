@@ -1,14 +1,15 @@
 plugins {
     id 'com.android.library'
 }
-
+//apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'maven'
 android {
-    compileSdkVersion 30
+    compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 30
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -23,15 +24,14 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility rootProject.ext.sourceCompatibility
+        targetCompatibility rootProject.ext.targetCompatibility
     }
 }
-
+group = 'com.pm.common'
+version = rootProject.ext.relaseVersion
 dependencies {
 
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -39,4 +39,20 @@ dependencies {
     //lifecycle
     api 'androidx.lifecycle:lifecycle-livedata:2.2.0-rc01'
     api 'androidx.lifecycle:lifecycle-livedata-core:2.2.0-rc01'
+    implementation "androidx.collection:collection:1.1.0"
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            //本地的Maven地址
+            /*repository(url: "https://dl.bintray.com/puming/mavin") {
+               authentication(userName: "puming", password: "itcode@1020")
+            }*/
+            repository(url: uri('../repositories'))
+//            pom.groupId = group
+            pom.version  = version
+            pom.artifactId = 'common-data'
+        }
+    }
 }

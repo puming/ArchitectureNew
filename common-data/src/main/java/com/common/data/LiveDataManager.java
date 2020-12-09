@@ -1,12 +1,10 @@
 package com.common.data;
 
-import android.util.Log;
-
 import androidx.collection.ArrayMap;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import java.util.Set;
+import java.util.LinkedList;
 
 /**
  * @author pm
@@ -16,12 +14,14 @@ import java.util.Set;
  */
 public class LiveDataManager {
     private static final String TAG = "LiveDataManager";
-    private static final int MAX_SIZE = 0;
+    private static final int MAX_SIZE = 50;
 
     private final ArrayMap<String, MutableLiveData<Object>> map;
+    private final LinkedList<String> keys;
 
     private LiveDataManager() {
         this.map = new ArrayMap<>();
+        this.keys = new LinkedList<>();
     }
 
     public static LiveDataManager getInstance() {
@@ -45,12 +45,11 @@ public class LiveDataManager {
         if (!has) {
             int size = map.size();
             if (size > MAX_SIZE) {
-                Set<String> keys = map.keySet();
-                for (String k : keys) {
-                    Log.d(TAG, "getLiveData: k=" + k);
-                }
+                map.remove(keys.getFirst());
+                keys.removeFirst();
             }
             map.put(key, new MutableLiveData<Object>());
+            keys.add(key);
         }
         return (LiveData<T>) map.get(key);
     }
@@ -62,6 +61,7 @@ public class LiveDataManager {
      */
     public void clear(String key) {
         map.remove(key);
+        keys.remove(key);
     }
 
     /**
@@ -69,5 +69,6 @@ public class LiveDataManager {
      */
     public void clearAll() {
         map.clear();
+        keys.clear();
     }
 }
