@@ -31,12 +31,5 @@ public class TestActivity extends AppCompatActivity {
         findViewById(R.id.btn_goto_audio).setOnClickListener(v -> {
             startActivity(new Intent(this, AudioActivity.class));
         });
-        LiveDataManager.getInstance().getLiveData("800", Process.class);
-        LiveDataManager.getInstance().getLiveData("200", Size.class);
-        LiveDataManager.getInstance().getLiveData("100", Thread.class);
-        LiveDataManager.getInstance().getLiveData("400", Intent.class);
-        LiveDataManager.getInstance().getLiveData("300", Display.class);
-        LiveDataManager.getInstance().getLiveData("600", Handler.class);
-        LiveDataManager.getInstance().getLiveData("asdfas00", Handler.class);
     }
 }

@@ -40,7 +40,7 @@ public class LiveDataManager {
      * @param <T>
      * @return
      */
-    public <T> LiveData<T> getLiveData(String key, Class<T> type) {
+    public <T> MutableLiveData<T> getLiveData(String key, Class<T> type) {
         boolean has = map.containsKey(key);
         if (!has) {
             int size = map.size();
@@ -51,7 +51,11 @@ public class LiveDataManager {
             map.put(key, new MutableLiveData<Object>());
             keys.add(key);
         }
-        return (LiveData<T>) map.get(key);
+        return (MutableLiveData<T>) map.get(key);
+    }
+
+    public LinkedList<String> getKeys(){
+        return keys;
     }
 
     /**

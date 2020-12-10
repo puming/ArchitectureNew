@@ -14,15 +14,15 @@
     <attr name="appBarDefStyle" format="reference" />
     <!---->
     <declare-styleable name="ImageTextCell">
-        <attr name="icon_width" format="dimension"/>
+        <attr name="icon_width" format="dimension" />
         <attr name="icon" format="reference" />
-        <attr name="icon_height" format="dimension"/>
+        <attr name="icon_height" format="dimension" />
         <attr name="text" format="string" />
-        <attr name="text_max_width" format="dimension"/>
-        <attr name="text_max_height" format="dimension"/>
-        <attr name="text_size" format="dimension"/>
-        <attr name="text_color" format="integer"/>
-        <attr name="top_margin" format="dimension"/>
+        <attr name="text_max_width" format="dimension" />
+        <attr name="text_max_height" format="dimension" />
+        <attr name="text_size" format="dimension" />
+        <attr name="text_color" format="color|reference" />
+        <attr name="top_margin" format="dimension" />
         <attr name="bottom_margin" format="dimension" />
     </declare-styleable>
 

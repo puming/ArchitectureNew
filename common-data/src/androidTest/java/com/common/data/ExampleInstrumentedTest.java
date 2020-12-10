@@ -1,17 +1,20 @@
 package com.common.data;
 
+import android.app.Instrumentation;
 import android.content.Context;
 import android.os.Process;
+import android.util.DisplayMetrics;
 import android.util.Size;
-import android.view.Display;
 
-import androidx.test.platform.app.InstrumentationRegistry;
+import androidx.lifecycle.Observer;
+import androidx.test.espresso.base.MainThread;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.platform.app.InstrumentationRegistry;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -26,12 +29,17 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         assertEquals("com.common.data.test", appContext.getPackageName());
     }
+
     @Test
-    public void testLiveData(){
-        LiveDataManager.getInstance().getLiveData("800", Process.class);
-        LiveDataManager.getInstance().getLiveData("100", Thread.class);
-        LiveDataManager.getInstance().getLiveData("200", Size.class);
-        LiveDataManager.getInstance().getLiveData("300", Display.class);
-//        assertEquals(4, 2 + 2);
+    @MainThread
+    public void testLiveData() {
+        Instrumentation instrumentation = InstrumentationRegistry.getInstrumentation();
+        Context context = instrumentation.getContext();
+        LiveDataManager.getInstance().getLiveData("800", Process.class).postValue(new Process());
+        LiveDataManager.getInstance().getLiveData("100", Thread.class).postValue(Thread.currentThread());
+        LiveDataManager.getInstance().getLiveData("200", Size.class).postValue(new Size(100, 100));
+        LiveDataManager.getInstance().getLiveData("300", DisplayMetrics.class).postValue(context.getResources().getDisplayMetrics());
+
+        //observer
     }
 }
